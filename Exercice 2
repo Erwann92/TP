@@ -1,0 +1,85 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+
+
+/*Réaliser un programme qui :
+• saisi un nombre "n" de drones à acheter jusqu'à ce qu'il soit supérieur à 0;
+• appelle une fonction nommée "calcul_prix_unitaire_HT" qui récupère le nombre de drones et retourne 
+le prix unitaire;
+• affiche le prix unitaire hors taxe d'un drone (pour une quantité "n");
+• appelle une fonction "calcul_prix_total" qui reçoit le nombre de drones et le prix unitaire hors taxe 
+Page 11/14
+correspondant puis qui renvoie le prix total hors taxe de la commande;
+• affiche le prix total hors taxe de la commande;
+• appelle une fonction "conversion_HT_vers_TTC" qui reçoit le prix total hors taxe de la commande puis 
+qui renvoie le prix total toute taxe comprise de la commande;
+• affiche le prix total toute taxe comprise de la commande.
+Pour la fonction "calcul_prix_unitaire_HT()" on considère les prix suivants :
+Quantité commandée Prix unitaire hors taxe
+De 1 à 9 1 999,95 €
+De 10 à 49 1 799,95 €
+Pour 50 et plus 1 599,95 €
+Pour la fonction "conversion_HT_vers_TTC" il faudra utiliser une constante "TVA". La constante "TVA" sera 
+préalablement défini dans le programme au taux de 20,0%.
+Aide : pour 100€ hors taxe on obtient 120€ taxes comprises
+Le programme doit être conforme aux exemples d'exécution ci-dessous :
+Quantite de drones desirees : 0
+Quantite de drones desirees : -9
+Quantite de drones desirees : 1
+Prix unitaire HT = 1999.949951 Euros
+Prix total HT = 1999.949951 Euros
+Prix total TTC = 2399.939941 Euros
+Quantite de drones desirees : 10
+Prix unitaire HT = 1799.949951 Euros
+Prix total HT = 17999.500000 Euros
+Prix total TTC = 21599.400391 Euros */
+
+#include <stdio.h>
+
+#define TVA 0.20
+
+float calcul_prix_unitaire_HT(int nb_drone)
+{
+    float prix_unitaire;
+    if(nb_drone>=1 && nb_drone<=9) prix_unitaire = 1999.95;
+    else if(nb_drone>=9 && nb_drone<=49) prix_unitaire = 1799.95;
+    else if(nb_drone>=50) prix_unitaire = 1599.95;
+    return prix_unitaire;
+}
+
+float calcul_prix_total(int qdrones, float pu)
+{
+    float totalprixHT;
+    totalprixHT = qdrones*pu;
+    return totalprixHT;
+}
+
+float conversion_HT_vers_TTC(float prix_HT){
+    float conv_res;
+    conv_res = prix_HT*(1 + TVA)
+    return conv_res;
+}
+
+int main()
+{
+    int drone;
+    float pu_HT, total_HT, total_TTC;
+    printf("Nombre de drones à acheter:\n");
+    scanf("%d", &drone);
+    
+    pu_HT = calcul_prix_unitaire_HT(drone);
+    printf("calcul_prix_unitaire_HT = %.2f.\n", pu_HT);
+    
+    total_HT= calcul_prix_total(drone, pu_HT);
+    printf("calcul_prix_total = %.2f.\n", total_HT);
+    
+    total_TTC = conversion_HT_vers_TTC(total_HT);
+    printf("calcul_prix_total TTC = %.2f.\n", total_TTC);
+    return 0;
+}
