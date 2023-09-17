@@ -6,12 +6,13 @@ Write your code in this editor and press "Run" button to compile and execute it.
 
 *******************************************************************************/
 
-#include <stdio.h>
 //Réaliser un programme qui :
 // saisit un nombre n (on suppose qu'il sera positif)
 // affiche le nombre saisi
 // affiche un décompte de la valeur n jusqu'à 0
 //Le programme doit être conforme à l'exemple d'exécution ci-dessous :
+
+#include <stdio.h>
 #include<stdio.h>
 #include<stdlib.h>
 
